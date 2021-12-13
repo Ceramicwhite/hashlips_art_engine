@@ -17,13 +17,12 @@ const layerConfigurations = [
     //Folder layers in order of how the should be drawn
     layersOrder: [
       { name: "Background" },
-      { name: "Confetti" },
-      { name: "Extras" },
-      { name: "Crown" },
-      { name: "Pin" },
-      { name: "Cracker" },
-      { name: "Ribbon" },
-      { name: "Toy" },
+      { name: "Eyeball" },
+      { name: "Eye color" },
+      { name: "Iris" },
+      { name: "Shine" },
+      { name: "Bottom lid" },
+      { name: "Top lid" },
     ],
   },
 ];
