@@ -18,9 +18,8 @@ const {
   extraMetadata,
   text,
   namePrefix,
-  network,
-  solanaMetadata,
   gif,
+  artistName,
 } = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -128,42 +127,20 @@ const drawBackground = () => {
 const addMetadata = (_dna, _edition) => {
   let dateTime = Date.now();
   let tempMetadata = {
+    version: 1,
     name: `${namePrefix} #${_edition}`,
-    description: description,
     image: `${baseUri}/${_edition}.png`,
-    dna: sha1(_dna),
+    description: description,
     edition: _edition,
-    date: dateTime,
     ...extraMetadata,
     attributes: attributesList,
-    compiler: "HashLips Art Engine",
+     properties: {
+      collection: new String ("Stacks Charity Cracker"),
+      collection_image:{'type':'string','value':`${baseUri}`},
+      artist_name: {'type':'string','value':`${artistName}`},
+      seed: new String (sha1(_dna)),
+    },   
   };
-  if (network == NETWORK.sol) {
-    tempMetadata = {
-      //Added metadata for solana
-      name: tempMetadata.name,
-      symbol: solanaMetadata.symbol,
-      description: tempMetadata.description,
-      //Added metadata for solana
-      seller_fee_basis_points: solanaMetadata.seller_fee_basis_points,
-      image: `image.png`,
-      //Added metadata for solana
-      external_url: solanaMetadata.external_url,
-      edition: _edition,
-      ...extraMetadata,
-      attributes: tempMetadata.attributes,
-      properties: {
-        files: [
-          {
-            uri: "image.png",
-            type: "image/png",
-          },
-        ],
-        category: "image",
-        creators: solanaMetadata.creators,
-      },
-    };
-  }
   metadataList.push(tempMetadata);
   attributesList = [];
 };
@@ -333,7 +310,7 @@ const startCreating = async () => {
   let failedCount = 0;
   let abstractedIndexes = [];
   for (
-    let i = network == NETWORK.sol ? 0 : 1;
+    let i = 1;
     i <= layerConfigurations[layerConfigurations.length - 1].growEditionSizeTo;
     i++
   ) {
