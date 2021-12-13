@@ -33,8 +33,8 @@ const debugLogs = false;
 
 //Size of Canvas
 const format = {
-  width: 2954,
-  height: 2954,
+  width: 512,
+  height: 512,
   smoothing: false,
 };
 
