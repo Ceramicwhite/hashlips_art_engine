@@ -2,37 +2,28 @@ const basePath = process.cwd();
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 
-const network = NETWORK.eth;
+const network = NETWORK.stx;
 
-// General metadata for Ethereum
-const namePrefix = "Your Collection";
-const description = "Remember to replace this description";
-const baseUri = "ipfs://NewUriToReplace";
+// General metadata for Stacks
+const namePrefix = "Collection Name";
+const description = "Collection Description";
+const baseUri = "ipfs://CID";
+const artistName = "ARTISTS NAME"
 
-const solanaMetadata = {
-  symbol: "YC",
-  seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
-  external_url: "https://www.youtube.com/c/hashlipsnft",
-  creators: [
-    {
-      address: "7fXNuer5sbZtaTEPhtJ5g5gNtuyRoKkvxdjEjEnPN4mC",
-      share: 100,
-    },
-  ],
-};
-
-// If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
+    //How big should the collection Be?
     growEditionSizeTo: 5,
+    //Folder layers in order of how the should be drawn
     layersOrder: [
       { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+      { name: "Confetti" },
+      { name: "Extras" },
+      { name: "Crown" },
+      { name: "Pin" },
+      { name: "Cracker" },
+      { name: "Ribbon" },
+      { name: "Toy" },
     ],
   },
 ];
@@ -41,9 +32,10 @@ const shuffleLayerConfigurations = false;
 
 const debugLogs = false;
 
+//Size of Canvas
 const format = {
-  width: 512,
-  height: 512,
+  width: 2954,
+  height: 2954,
   smoothing: false,
 };
 
@@ -72,13 +64,14 @@ const pixelFormat = {
 };
 
 const background = {
-  generate: true,
+  generate: false,
   brightness: "80%",
   static: false,
   default: "#000000",
 };
 
-const extraMetadata = {};
+const extraMetadata = {
+};
 
 const rarityDelimiter = "#";
 
@@ -116,7 +109,7 @@ module.exports = {
   text,
   namePrefix,
   network,
-  solanaMetadata,
   gif,
   preview_gif,
+  artistName,
 };
